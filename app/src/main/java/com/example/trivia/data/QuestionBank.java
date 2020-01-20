@@ -1,9 +1,12 @@
 package com.example.trivia.data;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.trivia.controller.AppController;
 import com.example.trivia.model.Question;
 
 import org.json.JSONArray;
@@ -21,7 +24,7 @@ public class QuestionBank {
                 Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
+                Log.d("JSON", "onResponse: " +response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -30,6 +33,9 @@ public class QuestionBank {
             }
         }
         );
+
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
         return null;
     }
 }

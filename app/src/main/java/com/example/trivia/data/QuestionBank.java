@@ -34,6 +34,8 @@ public class QuestionBank {
                         question.setAnswer(response.getJSONArray(i).getString(0));
                         question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
 
+                        questionArrayList.add(question);
+
                         //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getString(0));
                         //Log.d("JSON2", "onResponse: "+ response.getJSONArray(i).getBoolean(1));
                     } catch (JSONException e) {
@@ -51,6 +53,6 @@ public class QuestionBank {
 
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
-        return null;
+        return questionArrayList;
     }
 }

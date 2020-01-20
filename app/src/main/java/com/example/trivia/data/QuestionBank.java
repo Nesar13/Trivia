@@ -10,6 +10,7 @@ import com.example.trivia.controller.AppController;
 import com.example.trivia.model.Question;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,21 @@ public class QuestionBank {
                 Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("JSON", "onResponse: " +response);
+                for (int i=0; i<response.length(); i++) {
+
+                    try {
+
+                        Question question=new Question();
+
+                        question.setAnswer(response.getJSONArray(i).getString(0));
+                        question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
+
+                        //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getString(0));
+                        //Log.d("JSON2", "onResponse: "+ response.getJSONArray(i).getBoolean(1));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }, new Response.ErrorListener() {
             @Override

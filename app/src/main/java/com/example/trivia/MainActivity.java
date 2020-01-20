@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.android.volley.toolbox.Volley;
 import com.example.trivia.data.QuestionBank;
+import com.example.trivia.model.Question;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new QuestionBank().getQuestions();
+        List<Question>  questionList=new QuestionBank().getQuestions();
+
+        Log.d("MAIN: ", "onCreate: "+questionList);
+
     }
 }

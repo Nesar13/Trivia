@@ -1,6 +1,6 @@
 package com.example.trivia.data;
 
-class answerListAsync {
+public interface answerListAsync {
 
-    
+
 }

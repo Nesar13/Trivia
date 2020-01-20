@@ -20,35 +20,42 @@ public class QuestionBank {
     ArrayList<Question> questionArrayList = new ArrayList<>();
     private String url = "https://raw.githubusercontent.com/curiousily/simple-quiz/master/script/statements-data.json";
 
+    // added answerListAsync due Volley events being asynchronous
+    //makes it so when instantiating getQuestions() in main, all events must be finished
     public List<Question> getQuestions(final answerListAsync callback) {
-        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(
-                Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i=0; i<response.length(); i++) {
 
-                    try {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for (int i = 0; i < response.length(); i++) {
 
-                        Question question=new Question();
+                            try {
 
-                        question.setAnswer(response.getJSONArray(i).getString(0));
-                        question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
+                                Question question = new Question();
 
-                        //add question object to ArrayList
-                        questionArrayList.add(question);
+                                question.setAnswer(response.getJSONArray(i).getString(0));
+                                question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
+
+                                //add question object to ArrayList
+                                questionArrayList.add(question);
 
 
 //                        Log.d("JSON1", "onResponse: "+ question.getAnswer());
 
 
-                        //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getString(0));
-                        //Log.d("JSON2", "onResponse: "+ response.getJSONArray(i).getBoolean(1));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                                //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getString(0));
+                                //Log.d("JSON2", "onResponse: "+ response.getJSONArray(i).getBoolean(1));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (null != callback) callback.processFinished(questionArrayList);
                     }
-                }
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 

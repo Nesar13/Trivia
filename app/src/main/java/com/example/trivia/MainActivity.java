@@ -3,6 +3,7 @@ package com.example.trivia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.toolbox.Volley;
 import com.example.trivia.data.QuestionBank;

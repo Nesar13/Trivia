@@ -34,7 +34,12 @@ public class QuestionBank {
                         question.setAnswer(response.getJSONArray(i).getString(0));
                         question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
 
+                        //add question object to ArrayList
                         questionArrayList.add(question);
+
+
+                        Log.d("JSON1", "onResponse: " + questionArrayList.get(i).getAnswer());
+
 
                         //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getString(0));
                         //Log.d("JSON2", "onResponse: "+ response.getJSONArray(i).getBoolean(1));

@@ -53,6 +53,7 @@ public class QuestionBank {
                                 e.printStackTrace();
                             }
                         }
+                        //must be sure callback is not null
                         if (null != callback) callback.processFinished(questionArrayList);
                     }
                 }, new Response.ErrorListener() {

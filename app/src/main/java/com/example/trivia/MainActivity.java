@@ -25,10 +25,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void processFinished(ArrayList<Question> question) {
 
+                Log.d("MAIN: ", "onCreate: "+question);
             }
         });
 
-        Log.d("MAIN: ", "onCreate: "+questionList);
+
 
     }
 }

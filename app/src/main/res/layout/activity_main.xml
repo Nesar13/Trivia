@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -52,10 +53,15 @@
         android:text="@string/trueButton"
         app:layout_constraintEnd_toStartOf="@+id/false_button"
         app:layout_constraintStart_toEndOf="@+id/previous_button"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:padding="10dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/mybutton"
+        />
 
     <Button
         android:id="@+id/false_button"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -64,7 +70,9 @@
         app:layout_constraintEnd_toStartOf="@+id/next_button"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        style="?android:attr/borderlessButtonStyle"
+        />
 
     <ImageButton
         android:id="@+id/previous_button"

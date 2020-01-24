@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
 import com.example.trivia.data.QuestionBank;
@@ -81,5 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+    }
+//TO DO 
+    public Boolean isAnswerCorrect (boolean answer) {
+        if (questionList.get((currentQuestionIndex)).isAnswerTrue()==answer){
+            Toast.makeText(this, "This is correct", Toast.LENGTH_LONG).show();
+            return  true;
+        }
+        return true;
     }
 }

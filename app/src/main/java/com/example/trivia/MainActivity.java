@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-//TO DO 
+//TO DO
     public Boolean isAnswerCorrect (boolean answer) {
         if (questionList.get((currentQuestionIndex)).isAnswerTrue()==answer){
             Toast.makeText(this, "This is correct", Toast.LENGTH_LONG).show();

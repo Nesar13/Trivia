@@ -6,4 +6,5 @@
     <string name="falseButton">False</string>
     <string name="next_button">Next button</string>
     <string name="previous_button">Previous button</string>
+    <string name="question_text">Is this a question? :)</string>
 </resources>

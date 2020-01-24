@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void processFinished(ArrayList<Question> question) {
 
+                questionTextview.setText(question.get(currentQuestionIndex).getAnswer());
+
                 Log.d("MAIN: ", "onCreate: " + question);
             }
         });

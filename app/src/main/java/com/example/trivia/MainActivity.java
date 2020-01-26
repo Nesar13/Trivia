@@ -1,10 +1,13 @@
 package com.example.trivia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -66,16 +69,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.previous_button:
-                currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
-                questionTextview.setText(questionList.get(currentQuestionIndex).getAnswer());
-
+                if (questionList.size() > 0) {
+                    currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
+                    updateQuestion();
+                }
                 break;
             case R.id.next_button:
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
-                questionTextview.setText(questionList.get(currentQuestionIndex).getAnswer());
+                updateQuestion();
                 break;
             case R.id.false_button:
                 isAnswerCorrect(false);
+
                 break;
             case R.id.true_button:
                 isAnswerCorrect(true);
@@ -86,7 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //TODO
+    public void updateQuestion() {
+        String question = questionList.get(currentQuestionIndex).getAnswer();
+        questionTextview.setText(question);
+    }
 
     public void isAnswerCorrect(boolean answer) {
         int toastID = 0;
@@ -94,10 +102,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (trueAnswer == answer) {
             toastID = R.string.correct_answer;
         } else {
+            shakeAnimation();
             toastID = R.string.incorrect_answer;
         }
 
         Toast.makeText(this, toastID, Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void shakeAnimation() {
+        Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+        CardView card = findViewById(R.id.cardView);
+        card.setAnimation(shake);
+
 
     }
 }

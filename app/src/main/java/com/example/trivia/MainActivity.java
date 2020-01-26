@@ -87,13 +87,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //TODO
+
     public void isAnswerCorrect(boolean answer) {
+        int toastID = 0;
         boolean trueAnswer = questionList.get((currentQuestionIndex)).isAnswerTrue();
         if (trueAnswer == answer) {
-            Toast.makeText(this, "This is correct", Toast.LENGTH_LONG).show();
-
+            toastID = R.string.correct_answer;
         } else {
-            Toast.makeText(this, "This is incorrect", Toast.LENGTH_LONG).show();
+            toastID = R.string.incorrect_answer;
         }
+
+        Toast.makeText(this, toastID, Toast.LENGTH_SHORT).show();
+
     }
 }

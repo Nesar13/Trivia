@@ -5,6 +5,9 @@
     <string name="trueButton">True</string>
     <string name="falseButton">False</string>
     <string name="next_button">Next button</string>
+
     <string name="previous_button">Previous button</string>
     <string name="question_text">Is this a question? :)</string>
+    <string name="correct_answer">Correct!</string>
+    <string name="incorrect_answer">Incorrect!</string>
 </resources>

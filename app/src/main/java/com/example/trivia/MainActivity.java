@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         nextButton = findViewById(R.id.next_button);
         prevButton = findViewById(R.id.previous_button);
         trueButton = findViewById(R.id.true_button);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void processFinished(ArrayList<Question> question) {
 
                 questionTextview.setText(question.get(currentQuestionIndex).getAnswer());
-
+                updateQuestion();
                 Log.d("MAIN: ", "onCreate: " + question);
             }
         });
@@ -69,10 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.previous_button:
-                if (questionList.size() > 0) {
-                    currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
-                    updateQuestion();
-                }
+                currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
+                updateQuestion();
                 break;
             case R.id.next_button:
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
@@ -80,10 +79,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.false_button:
                 isAnswerCorrect(false);
-
+                updateQuestion();
                 break;
             case R.id.true_button:
                 isAnswerCorrect(true);
+                updateQuestion();
                 break;
 
 
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void updateQuestion() {
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionTextview.setText(question);
+        questionCounterTextview.setText(currentQuestionIndex + " / " + questionList.size());
     }
 
     public void isAnswerCorrect(boolean answer) {

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="correct_answer" type="id"></item>
-    <item name="incorrect_answer" type="id"></item>
-</resources>

@@ -70,8 +70,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.previous_button:
+                if (currentQuestionIndex==0) break;
+
                 currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
+
                 updateQuestion();
+
                 break;
             case R.id.next_button:
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());

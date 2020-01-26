@@ -75,20 +75,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 questionTextview.setText(questionList.get(currentQuestionIndex).getAnswer());
                 break;
             case R.id.false_button:
+                isAnswerCorrect(false);
                 break;
             case R.id.true_button:
+                isAnswerCorrect(true);
                 break;
 
 
         }
 
     }
-//TO DO
-    public Boolean isAnswerCorrect (boolean answer) {
-        if (questionList.get((currentQuestionIndex)).isAnswerTrue()==answer){
+
+    //TODO
+    public void isAnswerCorrect(boolean answer) {
+        boolean trueAnswer = questionList.get((currentQuestionIndex)).isAnswerTrue();
+        if (trueAnswer == answer) {
             Toast.makeText(this, "This is correct", Toast.LENGTH_LONG).show();
-            return  true;
+
+        } else {
+            Toast.makeText(this, "This is incorrect", Toast.LENGTH_LONG).show();
         }
-        return true;
     }
 }

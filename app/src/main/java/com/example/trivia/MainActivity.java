@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -116,8 +117,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, toastID, Toast.LENGTH_SHORT).show();
 
     }
+    //This will fade the card to green when the answer is correct
+    private void fadeView(){
+        CardView cardView =findViewById(R.id.cardView);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+    }
 
-    public void shakeAnimation() {
+    // This will shake when a user gets the question incorrect
+
+    private void shakeAnimation() {
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         final CardView card = findViewById(R.id.cardView);
         card.setAnimation(shake);

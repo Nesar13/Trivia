@@ -3,6 +3,7 @@ package com.example.trivia;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.previous_button:
-                if (currentQuestionIndex==0) break;
+                if (currentQuestionIndex == 0) break;
 
                 currentQuestionIndex = ((currentQuestionIndex - 1) % questionList.size());
 
@@ -95,10 +96,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //TODO
     public void updateQuestion() {
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionTextview.setText(question);
-        questionCounterTextview.setText(currentQuestionIndex +1 + " / " + questionList.size());
+        questionCounterTextview.setText(currentQuestionIndex + 1 + " / " + questionList.size());
     }
 
     public void isAnswerCorrect(boolean answer) {
@@ -117,8 +119,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void shakeAnimation() {
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-        CardView card = findViewById(R.id.cardView);
+        final CardView card = findViewById(R.id.cardView);
         card.setAnimation(shake);
+        shake.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                card.setCardBackgroundColor(getResources().getColor(R.color.cardColor));
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                card.setCardBackgroundColor(Color.WHITE);
+
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
 
     }

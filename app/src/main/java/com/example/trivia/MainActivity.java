@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void updateQuestion() {
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionTextview.setText(question);
-        questionCounterTextview.setText(currentQuestionIndex + " / " + questionList.size());
+        questionCounterTextview.setText(currentQuestionIndex +1 + " / " + questionList.size());
     }
 
     public void isAnswerCorrect(boolean answer) {

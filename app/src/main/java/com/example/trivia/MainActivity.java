@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void fadeView(){
         CardView cardView =findViewById(R.id.cardView);
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+
+        cardView.setAnimation(alphaAnimation);
+        
     }
 
     // This will shake when a user gets the question incorrect

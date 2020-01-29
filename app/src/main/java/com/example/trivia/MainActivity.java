@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int toastID = 0;
         boolean trueAnswer = questionList.get((currentQuestionIndex)).isAnswerTrue();
         if (trueAnswer == answer) {
+            fadeView();
             toastID = R.string.correct_answer;
         } else {
             shakeAnimation();
@@ -117,13 +118,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, toastID, Toast.LENGTH_SHORT).show();
 
     }
-    //This will fade the card to green when the answer is correct
-    private void fadeView(){
-        CardView cardView =findViewById(R.id.cardView);
-        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
 
+    //This will fade the card to green when the answer is correct
+    private void fadeView() {
+        final CardView cardView = findViewById(R.id.cardView);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f); //Initial value 1.0 is to fade, and 0 to unfade
+
+        alphaAnimation.setDuration(450); //in ms
+        alphaAnimation.setRepeatCount(1);
+        alphaAnimation.setRepeatMode(Animation.REVERSE); //reversing the animation at the end
         cardView.setAnimation(alphaAnimation);
-        
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                cardView.setCardBackgroundColor(Color.GREEN);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                cardView.setCardBackgroundColor(Color.WHITE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
     }
 
     // This will shake when a user gets the question incorrect

@@ -108,16 +108,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questionCounterTextview.setText(currentQuestionIndex + 1 + " / " + questionList.size());
     }
     public void scoreIncrease(){
-        if (scoreCounter>0) {
+        if (scoreCounter >= 0) {
             scoreCounter += 10;
 
             scoreText.setText(String.valueOf(scoreCounter));
+            Log.d("score", "scoreIncrease: "+ scoreCounter);
         } else{
-            scoreCounter=0;
+
             scoreText.setText(String.valueOf(scoreCounter));
         }
 
-        
+
+
+
+    }
+    public void scoreDecrease(){
+        if (scoreCounter>0) {
+            scoreCounter -= 10;
+
+            scoreText.setText(String.valueOf(scoreCounter));
+        } else{
+            scoreText.setText(String.valueOf(scoreCounter));
+        }
+
+
 
 
     }
@@ -128,9 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (trueAnswer == answer) {
             fadeView();
             toastID = R.string.correct_answer;
+            scoreIncrease();
+            Log.d("score2", "isAnswerCorrect: " + scoreCounter);
         } else {
             shakeAnimation();
             toastID = R.string.incorrect_answer;
+            scoreDecrease();
         }
 
         Toast.makeText(this, toastID, Toast.LENGTH_SHORT).show();

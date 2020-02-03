@@ -1,5 +1,8 @@
 package com.example.trivia.model;
 
+/**
+ * Score created to keep track of score
+ */
 public class Score {
 
     private int score=0;

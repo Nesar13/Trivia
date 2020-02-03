@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button falseButton;
     private TextView questionCounterTextview;
     private TextView questionTextview;
+    private  TextView scoreText;
+    private int scoreCounter=0;
 
     private int currentQuestionIndex = 0;
 
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         falseButton = findViewById(R.id.false_button);
         questionCounterTextview = findViewById(R.id.count_text);
         questionTextview = findViewById(R.id.question_textview);
+        scoreText=findViewById(R.id.score_textView);
+
 
         nextButton.setOnClickListener(this);
         prevButton.setOnClickListener(this);
@@ -97,11 +101,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //TODO
+
     public void updateQuestion() {
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionTextview.setText(question);
         questionCounterTextview.setText(currentQuestionIndex + 1 + " / " + questionList.size());
+    }
+    public void scoreIncrease(){
+        if (scoreCounter>0) {
+            scoreCounter += 10;
+
+            scoreText.setText(String.valueOf(scoreCounter));
+        } else{
+            scoreCounter=0;
+            scoreText.setText(String.valueOf(scoreCounter));
+        }
+
+        
+
+
     }
 
     public void isAnswerCorrect(boolean answer) {

@@ -121,5 +121,19 @@
         android:background="@drawable/mybutton"
         />
 
+    <TextView
+        android:id="@+id/score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/chewy"
+        android:text="@string/scoreText"
+        android:textColor="#F1F3F1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/count_text"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trivia_text" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

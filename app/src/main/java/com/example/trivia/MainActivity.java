@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.trivia.data.QuestionBank;
 import com.example.trivia.data.answerListAsync;
 import com.example.trivia.model.Question;
+import com.example.trivia.model.Score;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView questionCounterTextview;
     private TextView questionTextview;
     private TextView scoreText;
+    private TextView highestScore;
+    private Score score;
     private int scoreCounter = 0;
 
     private int currentQuestionIndex = 0;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        score=new Score();
         nextButton = findViewById(R.id.next_button);
         prevButton = findViewById(R.id.previous_button);
         trueButton = findViewById(R.id.true_button);
@@ -51,7 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questionCounterTextview = findViewById(R.id.count_text);
         questionTextview = findViewById(R.id.question_textview);
         scoreText = findViewById(R.id.score_textView);
-        scoreText.setText("Current Score:  "+scoreCounter);
+        highestScore=findViewById(R.id.highest_score);
+
+
+
+
+
+        scoreText.setText("Current Score:  "+ score.getScore());
 
 
         nextButton.setOnClickListener(this);
@@ -115,11 +124,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (scoreCounter >= 0) {
             scoreCounter += 10;
 
-            scoreText.setText("Current Score: " + scoreCounter);
+            score.setScore(scoreCounter);
+
+            scoreText.setText("Current Score: " + score.getScore());
 
         } else {
 
-            scoreText.setText("Current Score: " + scoreCounter);
+            scoreText.setText("Current Score: " + score.getScore());
         }
 
 
@@ -128,10 +139,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void scoreDecrease() {
         if (scoreCounter > 0) {
             scoreCounter -= 10;
-
-            scoreText.setText("Current Score: " + scoreCounter);
+            score.setScore(scoreCounter);
+            scoreText.setText("Current Score: " + score.getScore());
         } else {
-            scoreText.setText("Current Score: " + scoreCounter);
+            scoreText.setText("Current Score: " + score.getScore());
         }
 
 

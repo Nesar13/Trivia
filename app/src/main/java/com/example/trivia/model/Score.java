@@ -7,6 +7,9 @@ public class Score {
 
     private int score=0;
 
+    public Score() {
+    }
+
     public Score(int score) {
         this.score = score;
     }

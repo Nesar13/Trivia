@@ -11,7 +11,7 @@
         android:id="@+id/trivia_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/chewy"
         android:text="@string/triviaText"
         android:textColor="#E8EBEA"
@@ -125,15 +125,30 @@
         android:id="@+id/score_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/chewy"
         android:text="@string/scoreText"
         android:textColor="#F1F3F1"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/count_text"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trivia_text" />
+
+    <TextView
+        android:id="@+id/highest_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/chewy"
+        android:text="@string/highest_score"
+        android:textColor="#F5F8FA"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

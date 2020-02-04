@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button falseButton;
     private TextView questionCounterTextview;
     private TextView questionTextview;
-    private  TextView scoreText;
-    private int scoreCounter=0;
+    private TextView scoreText;
+    private int scoreCounter = 0;
 
     private int currentQuestionIndex = 0;
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         falseButton = findViewById(R.id.false_button);
         questionCounterTextview = findViewById(R.id.count_text);
         questionTextview = findViewById(R.id.question_textview);
-        scoreText=findViewById(R.id.score_textView);
+        scoreText = findViewById(R.id.score_textView);
 
 
         nextButton.setOnClickListener(this);
@@ -89,10 +89,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.false_button:
                 isAnswerCorrect(false);
+                currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
                 updateQuestion();
                 break;
             case R.id.true_button:
                 isAnswerCorrect(true);
+                currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
                 updateQuestion();
                 break;
 
@@ -107,31 +109,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questionTextview.setText(question);
         questionCounterTextview.setText(currentQuestionIndex + 1 + " / " + questionList.size());
     }
-    public void scoreIncrease(){
+
+    public void scoreIncrease() {
         if (scoreCounter >= 0) {
             scoreCounter += 10;
 
-            scoreText.setText(String.valueOf(scoreCounter));
-            Log.d("score", "scoreIncrease: "+ scoreCounter);
-        } else{
+            scoreText.setText("Score:" + scoreCounter);
 
-            scoreText.setText(String.valueOf(scoreCounter));
+        } else {
+
+            scoreText.setText("Score:" + scoreCounter);
         }
-
-
 
 
     }
-    public void scoreDecrease(){
-        if (scoreCounter>0) {
+
+    public void scoreDecrease() {
+        if (scoreCounter > 0) {
             scoreCounter -= 10;
 
-            scoreText.setText(String.valueOf(scoreCounter));
-        } else{
-            scoreText.setText(String.valueOf(scoreCounter));
+            scoreText.setText("Score:" + scoreCounter);
+        } else {
+            scoreText.setText("Score:" + scoreCounter);
         }
-
-
 
 
     }

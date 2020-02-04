@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questionCounterTextview = findViewById(R.id.count_text);
         questionTextview = findViewById(R.id.question_textview);
         scoreText = findViewById(R.id.score_textView);
+        scoreText.setText("Current Score:  "+scoreCounter);
 
 
         nextButton.setOnClickListener(this);
@@ -114,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (scoreCounter >= 0) {
             scoreCounter += 10;
 
-            scoreText.setText("Score:" + scoreCounter);
+            scoreText.setText("Current Score: " + scoreCounter);
 
         } else {
 
-            scoreText.setText("Score:" + scoreCounter);
+            scoreText.setText("Current Score: " + scoreCounter);
         }
 
 
@@ -128,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (scoreCounter > 0) {
             scoreCounter -= 10;
 
-            scoreText.setText("Score:" + scoreCounter);
+            scoreText.setText("Current Score: " + scoreCounter);
         } else {
-            scoreText.setText("Score:" + scoreCounter);
+            scoreText.setText("Current Score: " + scoreCounter);
         }
 
 
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fadeView();
             toastID = R.string.correct_answer;
             scoreIncrease();
-            Log.d("score2", "isAnswerCorrect: " + scoreCounter);
+
         } else {
             shakeAnimation();
             toastID = R.string.incorrect_answer;

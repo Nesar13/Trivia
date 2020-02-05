@@ -20,6 +20,7 @@ import com.example.trivia.data.QuestionBank;
 import com.example.trivia.data.answerListAsync;
 import com.example.trivia.model.Question;
 import com.example.trivia.model.Score;
+import com.example.trivia.util.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView highestScore;
     private Score score;
     private int scoreCounter = 0;
+    private Prefs prefs;
+
 
     private int currentQuestionIndex = 0;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         score=new Score();
+        prefs=new Prefs();
         nextButton = findViewById(R.id.next_button);
         prevButton = findViewById(R.id.previous_button);
         trueButton = findViewById(R.id.true_button);
@@ -94,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.next_button:
+                prefs.savedHighestScore(scoreCounter);
+                Log.d(TAG, "onClick: "+ prefs.getHighestScore());
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
                 updateQuestion();
                 break;

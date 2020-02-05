@@ -12,17 +12,20 @@ public class Prefs {
 
     }
 
-    public void savedHighestScore(int score){
-        int currentScore=score;
+    public void saveHighestScore(int score) {
+        int currentScore = score;
 
-        int lastScore=preferences.getInt("high_score", 0);
-        if (currentScore >lastScore){
+        int lastScore = preferences.getInt("high_score", 0);
+        if (currentScore > lastScore) {
 
-            preferences.edit().putInt("high_score",currentScore).apply();
-
-
+            preferences.edit().putInt("high_score", currentScore).apply();
 
 
         }
+    }
+
+    public int getHighestScore(){
+        return preferences.getInt("high_score", 0);
+
     }
 }

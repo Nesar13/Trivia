@@ -131,6 +131,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void goNext(){
+        currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
+        updateQuestion();
+
+    }
     public void scoreIncrease() {
         if (scoreCounter >= 0) {
             scoreCounter += 10;
@@ -177,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //This will fade the card to green or red when the answer is correct/incorrect
+    //This will fade the card to green when the answer is correct/incorrect
     private void fadeView() {
         final CardView cardView = findViewById(R.id.cardView);
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f); //Initial value 1.0 is to fade, and 0 to unfade
@@ -195,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 cardView.setCardBackgroundColor(Color.WHITE);
+                goNext();
 
             }
 
@@ -221,8 +227,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 card.setCardBackgroundColor(Color.WHITE);
-
-
+                goNext();
+                
 
             }
 

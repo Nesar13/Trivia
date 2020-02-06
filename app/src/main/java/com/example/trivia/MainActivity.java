@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         score=new Score();
-        prefs=new Prefs();
+        prefs=new Prefs(MainActivity.this);
         nextButton = findViewById(R.id.next_button);
         prevButton = findViewById(R.id.previous_button);
         trueButton = findViewById(R.id.true_button);
@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highestScore=findViewById(R.id.highest_score);
 
 
-
+        Log.d("prefs", "onCreate: "+prefs.getHighestScore());
 
 
         scoreText.setText("Current Score:  "+ score.getScore());
+        highestScore.setText("Highest Score: "+ prefs.getHighestScore());
 
 
         nextButton.setOnClickListener(this);
@@ -98,13 +99,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.next_button:
-                prefs.savedHighestScore(scoreCounter);
-                Log.d(TAG, "onClick: "+ prefs.getHighestScore());
+
+
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
                 updateQuestion();
                 break;
             case R.id.false_button:
                 isAnswerCorrect(false);
+
+                //will go to next question regardless
                 currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
                 updateQuestion();
                 break;
@@ -124,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionTextview.setText(question);
         questionCounterTextview.setText(currentQuestionIndex + 1 + " / " + questionList.size());
+        Log.d("score", "updateQuestion: " +score.getScore());
+
     }
 
     public void scoreIncrease() {
@@ -172,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //This will fade the card to green when the answer is correct
+    //This will fade the card to green or red when the answer is correct/incorrect
     private void fadeView() {
         final CardView cardView = findViewById(R.id.cardView);
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f); //Initial value 1.0 is to fade, and 0 to unfade
@@ -190,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
                 cardView.setCardBackgroundColor(Color.WHITE);
+
             }
 
             @Override
@@ -217,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 card.setCardBackgroundColor(Color.WHITE);
 
 
+
             }
 
             @Override
@@ -225,6 +232,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
+    }
+
+
+    //Will save the highes
+    @Override
+    protected void onPause() {
+        prefs.saveHighestScore(score.getScore());
+        super.onPause();
 
     }
 }

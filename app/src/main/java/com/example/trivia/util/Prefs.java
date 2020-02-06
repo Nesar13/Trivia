@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 public class Prefs {
     private SharedPreferences preferences;
 
-    public void Prefs(Activity activity) {
+    public Prefs(Activity activity) {
         this.preferences = activity.getPreferences(activity.MODE_PRIVATE);
 
     }
@@ -18,6 +18,7 @@ public class Prefs {
         int lastScore = preferences.getInt("high_score", 0);
         if (currentScore > lastScore) {
 
+            //Saving a new high score
             preferences.edit().putInt("high_score", currentScore).apply();
 
 

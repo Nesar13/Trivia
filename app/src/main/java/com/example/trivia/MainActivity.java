@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //making it more simple to go to next question adn updating
     public void goNext(){
         currentQuestionIndex = ((currentQuestionIndex + 1) % questionList.size());
         updateQuestion();
@@ -228,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAnimationEnd(Animation animation) {
                 card.setCardBackgroundColor(Color.WHITE);
                 goNext();
-                
+
 
             }
 

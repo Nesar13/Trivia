@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updateQuestion();
 
     }
+    // Increasing score by 10
     public void scoreIncrease() {
         if (scoreCounter >= 0) {
             scoreCounter += 10;
@@ -152,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
+    // Decreasing score by 10
     public void scoreDecrease() {
         if (scoreCounter > 0) {
             scoreCounter -= 10;
@@ -165,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // See if answer matches the list from API
     public void isAnswerCorrect(boolean answer) {
         int toastID = 0;
         boolean trueAnswer = questionList.get((currentQuestionIndex)).isAnswerTrue();
